@@ -2,6 +2,7 @@ namespace coursework_db_mvc_cf.Models.DB
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -17,10 +18,12 @@ namespace coursework_db_mvc_cf.Models.DB
         [Key]
         public int ИД { get; set; }
 
+        [DisplayName("Адрес")]
         public int ИД_Адреса { get; set; }
 
         [Required]
         [StringLength(128)]
+        [DisplayName("Название отели")]
         public string Название_отели { get; set; }
 
         public int Рейтинг { get; set; }

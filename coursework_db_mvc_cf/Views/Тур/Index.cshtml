@@ -1,0 +1,87 @@
+﻿@model IEnumerable<coursework_db_mvc_cf.Models.DB.Тур>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Место_отдыха.Название)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ночёвка.Тип_номера)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Рейс.ТипТранспорта)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Рейс1.ТипТранспорта)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Вкл_гида)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Вкл_питание)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Вкл_ночёвка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Вкл_поездка)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Общая_стоимость)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Длительность_отдыха_в_днях)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Место_отдыха.Название)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ночёвка.Тип_номера)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Рейс.ТипТранспорта)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Рейс1.ТипТранспорта)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Вкл_гида)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Вкл_питание)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Вкл_ночёвка)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Вкл_поездка)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Общая_стоимость)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Длительность_отдыха_в_днях)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ИД }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ИД }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ИД })
+        </td>
+    </tr>
+}
+
+</table>

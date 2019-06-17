@@ -2,6 +2,7 @@ namespace coursework_db_mvc_cf.Models.DB
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -18,14 +19,18 @@ namespace coursework_db_mvc_cf.Models.DB
         public int ИД { get; set; }
 
         [Column(TypeName = "money")]
+        [DisplayName("Цена за ночь")]
         public decimal Цена_за_ночь { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Тип номера")]
         public string Тип_номера { get; set; }
 
+        [DisplayName("Кол-во ночей")]
         public int Количество_ночей { get; set; }
 
+        [DisplayName("Отель")]
         public int ИД_отели { get; set; }
 
         public virtual Отель Отель { get; set; }

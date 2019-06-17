@@ -1,0 +1,117 @@
+﻿@model coursework_db_mvc_cf.Models.DB.Тур
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Тур</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ИД)
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Вкл_гида, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Вкл_гида)
+                    @Html.ValidationMessageFor(model => model.Вкл_гида, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Вкл_питание, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Вкл_питание)
+                    @Html.ValidationMessageFor(model => model.Вкл_питание, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Вкл_ночёвка, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Вкл_ночёвка)
+                    @Html.ValidationMessageFor(model => model.Вкл_ночёвка, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Вкл_поездка, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Вкл_поездка)
+                    @Html.ValidationMessageFor(model => model.Вкл_поездка, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Общая_стоимость, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Общая_стоимость, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Общая_стоимость, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.Длительность_отдыха_в_днях, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.Длительность_отдыха_в_днях, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Длительность_отдыха_в_днях, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.ИД_рейса_в_место_отдыха, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("ИД_рейса_в_место_отдыха", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ИД_рейса_в_место_отдыха, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.ИД_рейса_из_места_отдыха, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("ИД_рейса_из_места_отдыха", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ИД_рейса_из_места_отдыха, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.ИД_место_отдыха, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("ИД_место_отдыха", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ИД_место_отдыха, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            @Html.LabelFor(model => model.ИД_ночёвки, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("ИД_ночёвки", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ИД_ночёвки, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row mt-2">
+            <div class="col-md-offset-2 col-md-4">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

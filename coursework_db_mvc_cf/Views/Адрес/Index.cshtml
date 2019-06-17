@@ -1,0 +1,38 @@
+﻿@model IEnumerable<coursework_db_mvc_cf.Models.DB.Адрес>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Страна)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Город)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Страна)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Город)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ИД }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ИД })
+        </td>
+    </tr>
+}
+
+</table>
