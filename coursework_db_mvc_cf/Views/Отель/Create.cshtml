@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Добавление</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -14,15 +14,15 @@
         <h4>Отель</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group row mt-2">
-            @Html.LabelFor(model => model.ИД_Адреса, "ИД_Адреса", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ИД_Адреса, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ИД_Адреса", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ИД_Адреса, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Название_отели, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Название_отели, new { htmlAttributes = new { @class = "form-control" } })
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Рейтинг, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Рейтинг, new { htmlAttributes = new { @class = "form-control" } })
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Индекс, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Индекс, new { htmlAttributes = new { @class = "form-control" } })
@@ -46,14 +46,14 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Добавить" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку", "Index")
 </div>

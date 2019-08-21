@@ -1,0 +1,56 @@
+﻿@model coursework_db_mvc_cf.Models.DB.Ночёвка
+
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить?</h3>
+<div>
+    <h4>Ночёвка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Отель.Название_отели)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Отель.Название_отели)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цена_за_ночь)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цена_за_ночь)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Тип_номера)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Тип_номера)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество_ночей)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество_ночей)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-primary" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование</h2>
 
 @using (Html.BeginForm())
 {
@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ИД)
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.ИД_Адреса, "ИД_Адреса", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ИД_Адреса", null, htmlAttributes: new { @class = "form-control" })
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Название_отели, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Название_отели, new { htmlAttributes = new { @class = "form-control" } })
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Рейтинг, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Рейтинг, new { htmlAttributes = new { @class = "form-control" } })
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             @Html.LabelFor(model => model.Индекс, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Индекс, new { htmlAttributes = new { @class = "form-control" } })
@@ -48,14 +48,14 @@
             </div>
         </div>
 
-        <div class="form-group row mt-2">
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Вернуться к списку", "Index")
 </div>

@@ -168,7 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\АдресController.cs" />
+    <Compile Include="Controllers\КлиентController.cs" />
     <Compile Include="Controllers\Место_отдыхаController.cs" />
+    <Compile Include="Controllers\НочёвкаController.cs" />
     <Compile Include="Controllers\ОтельController.cs" />
     <Compile Include="Controllers\ТурController.cs" />
     <Compile Include="Global.asax.cs">
@@ -181,10 +183,9 @@
     <Compile Include="Models\DB\Место_отдыха.cs" />
     <Compile Include="Models\DB\Ночёвка.cs" />
     <Compile Include="Models\DB\Отель.cs" />
-    <Compile Include="Models\DB\Пасспорт.cs" />
     <Compile Include="Models\DB\Рейс.cs" />
+    <Compile Include="Controllers\РейсController.cs" />
     <Compile Include="Models\DB\Тур.cs" />
-    <Compile Include="Models\ТурНочёвка.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +209,18 @@
     <Content Include="Views\Тур\Delete.cshtml" />
     <Content Include="Views\Тур\Edit.cshtml" />
     <Content Include="Views\Тур\Index.cshtml" />
+    <Content Include="Views\Ночёвка\Create.cshtml" />
+    <Content Include="Views\Ночёвка\Delete.cshtml" />
+    <Content Include="Views\Ночёвка\Edit.cshtml" />
+    <Content Include="Views\Ночёвка\Index.cshtml" />
+    <Content Include="Views\Клиент\Create.cshtml" />
+    <Content Include="Views\Клиент\Delete.cshtml" />
+    <Content Include="Views\Клиент\Edit.cshtml" />
+    <Content Include="Views\Клиент\Index.cshtml" />
+    <Content Include="Views\Рейс\Create.cshtml" />
+    <Content Include="Views\Рейс\Delete.cshtml" />
+    <Content Include="Views\Рейс\Edit.cshtml" />
+    <Content Include="Views\Рейс\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

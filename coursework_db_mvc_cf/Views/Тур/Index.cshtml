@@ -4,59 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Список туров</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Место_отдыха.Название)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ночёвка.Тип_номера)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Рейс.ТипТранспорта)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Рейс1.ТипТранспорта)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Вкл_гида)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Вкл_питание)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Вкл_ночёвка)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Вкл_поездка)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Общая_стоимость)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Длительность_отдыха_в_днях)
-        </th>
-        <th></th>
-    </tr>
+
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <div class="card">
+        <div class="card-header">
             @Html.DisplayFor(modelItem => item.Место_отдыха.Название)
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.ИД }, new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    @*<tr>
+        <td>
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Ночёвка.Тип_номера)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Рейс.ТипТранспорта)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Рейс1.ТипТранспорта)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Вкл_гида)
@@ -76,12 +48,5 @@
         <td>
             @Html.DisplayFor(modelItem => item.Длительность_отдыха_в_днях)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ИД }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ИД }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ИД })
-        </td>
-    </tr>
+    </tr>*@
 }
-
-</table>

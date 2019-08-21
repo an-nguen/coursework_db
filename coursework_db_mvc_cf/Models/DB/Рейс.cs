@@ -17,6 +17,7 @@ namespace coursework_db_mvc_cf.Models.DB
         }
 
         [Key]
+        [DisplayName("ИД")]
         public int ИД { get; set; }
 
         [Required]
@@ -36,16 +37,14 @@ namespace coursework_db_mvc_cf.Models.DB
 
         [Column(TypeName = "date")]
         [DisplayName("Дата отправления")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ДатаОтправления { get; set; }
 
         [Column(TypeName = "date")]
-        [DisplayName("Страна прибытия")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayName("Дата прибытия")]
         public DateTime ДатаПрибытия { get; set; }
 
         [Column(TypeName = "money")]
-        [DisplayName("Стоимость билета")]
+        [DisplayName("Стоимость поездки")]
         public decimal СтоимостьПоездки { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

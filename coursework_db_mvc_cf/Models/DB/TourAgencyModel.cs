@@ -18,7 +18,6 @@
         public virtual DbSet<Место_отдыха> Место_отдыха { get; set; }
         public virtual DbSet<Ночёвка> Ночёвка { get; set; }
         public virtual DbSet<Отель> Отель { get; set; }
-        public virtual DbSet<Пасспорт> Пасспорт { get; set; }
         public virtual DbSet<Рейс> Рейс { get; set; }
         public virtual DbSet<Тур> Тур { get; set; }
 
@@ -61,11 +60,6 @@
                 .WithRequired(e => e.Отель)
                 .HasForeignKey(e => e.ИД_отели)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Пасспорт>()
-                .HasMany(e => e.Клиент)
-                .WithRequired(e => e.Пасспорт)
-                .HasForeignKey(e => new { e.Серия, e.Номер });
 
             modelBuilder.Entity<Рейс>()
                 .Property(e => e.СтоимостьПоездки)

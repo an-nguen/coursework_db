@@ -10,112 +10,108 @@ using coursework_db_mvc_cf.Models.DB;
 
 namespace coursework_db_mvc_cf.Controllers
 {
-    public class ОтельController : Controller
+    public class КлиентController : Controller
     {
         private TourAgencyModel db = new TourAgencyModel();
 
-        // GET: Отель
+        // GET: Клиент
         public ActionResult Index()
         {
-            var отель = db.Отель.Include(о => о.Адрес);
-            return View(отель.ToList());
+            return View(db.Клиент.ToList());
         }
 
-        // GET: Отель/Details/5
+        // GET: Клиент/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Отель отель = db.Отель.Find(id);
-            if (отель == null)
+            Клиент клиент = db.Клиент.Find(id);
+            if (клиент == null)
             {
                 return HttpNotFound();
             }
-            return View(отель);
+            return View(клиент);
         }
 
-        // GET: Отель/Create
+        // GET: Клиент/Create
         public ActionResult Create()
         {
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Город");
             return View();
         }
 
-        // POST: Отель/Create
+        // POST: Клиент/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ИД,ИД_Адреса,Название_отели,Рейтинг,Индекс")] Отель отель)
+        public ActionResult Create([Bind(Include = "ИД,Фамилия,Имя,Отчество,Почта,Дата_рождения,Серия,Номер")] Клиент клиент)
         {
             if (ModelState.IsValid)
             {
-                db.Отель.Add(отель);
+                db.Клиент.Add(клиент);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
-            return View(отель);
+            return View(клиент);
         }
 
-        // GET: Отель/Edit/5
+        // GET: Клиент/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Отель отель = db.Отель.Find(id);
-            if (отель == null)
+            Клиент клиент = db.Клиент.Find(id);
+            if (клиент == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
-            return View(отель);
+            return View(клиент);
         }
 
-        // POST: Отель/Edit/5
+        // POST: Клиент/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ИД,ИД_Адреса,Название_отели,Рейтинг,Индекс")] Отель отель)
+        public ActionResult Edit([Bind(Include = "ИД,Фамилия,Имя,Отчество,Почта,Дата_рождения,Серия,Номер")] Клиент клиент)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(отель).State = EntityState.Modified;
+                db.Entry(клиент).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
-            return View(отель);
+
+            return View(клиент);
         }
 
-        // GET: Отель/Delete/5
+        // GET: Клиент/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Отель отель = db.Отель.Find(id);
-            if (отель == null)
+            Клиент клиент = db.Клиент.Find(id);
+            if (клиент == null)
             {
                 return HttpNotFound();
             }
-            return View(отель);
+            return View(клиент);
         }
 
-        // POST: Отель/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: Клиент/Delete/5
+        [HttpPost, ActionName("Удалить")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Отель отель = db.Отель.Find(id);
-            db.Отель.Remove(отель);
+            Клиент клиент = db.Клиент.Find(id);
+            db.Клиент.Remove(клиент);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -17,6 +17,7 @@ namespace coursework_db_mvc_cf.Models.DB
 
         [Key]
         public int ИД { get; set; }
+
         [DisplayName("Адрес")]
         public int ИД_адреса { get; set; }
 

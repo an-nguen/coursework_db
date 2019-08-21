@@ -106,7 +106,7 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Место_отдыха/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Удалить")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

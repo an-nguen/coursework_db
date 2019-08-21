@@ -4,15 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Список отелей</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ИД_Адреса)
+            @Html.DisplayNameFor(model => model.Адрес.Страна)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Название_отели)
@@ -29,7 +29,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ИД_Адреса)
+            @Html.DisplayFor(modelItem => item.Адрес.Страна)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Название_отели)
@@ -41,8 +41,8 @@
             @Html.DisplayFor(modelItem => item.Индекс)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ИД }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ИД })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ИД }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ИД })
         </td>
     </tr>
 }

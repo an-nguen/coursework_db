@@ -1,0 +1,56 @@
+﻿@model IEnumerable<coursework_db_mvc_cf.Models.DB.Ночёвка>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список ночёвок</h2>
+
+<p>
+    @Html.ActionLink("Добавить", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ИД)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Отель.Название_отели)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Цена_за_ночь)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_номера)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Количество_ночей)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ИД)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Отель.Название_отели)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Цена_за_ночь)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Тип_номера)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Количество_ночей)
+    </td>
+    <td>
+        @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }) |
+        @Html.ActionLink("Удалить", "Delete", new { id = item.ИД })
+    </td>
+</tr>
+}
+
+</table>

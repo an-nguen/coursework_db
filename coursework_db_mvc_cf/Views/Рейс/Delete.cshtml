@@ -1,0 +1,72 @@
+﻿@model coursework_db_mvc_cf.Models.DB.Рейс
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы уверены, что хотите удалить?</h3>
+<div>
+    <h4>Рейс</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ТипТранспорта)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ТипТранспорта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.СтранаОтправления)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.СтранаОтправления)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.СтранаПрибытия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.СтранаПрибытия)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ДатаОтправления)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ДатаОтправления)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ДатаПрибытия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ДатаПрибытия)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.СтоимостьПоездки)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.СтоимостьПоездки)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-primary" /> |
+            @Html.ActionLink("Вернуться к списку", "Index")
+        </div>
+    }
+</div>

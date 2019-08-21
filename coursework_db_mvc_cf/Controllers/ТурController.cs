@@ -25,9 +25,9 @@ namespace coursework_db_mvc_cf.Controllers
         public ActionResult Create()
         {
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название");
-            ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "Тип_номера");
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта");
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта");
+            ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД");
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ИД");
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ИД");
             return View();
         }
 
@@ -44,9 +44,9 @@ namespace coursework_db_mvc_cf.Controllers
             }
 
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название", тур.ИД_место_отдыха);
-            ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "Тип_номера", тур.ИД_ночёвки);
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_из_места_отдыха);
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_в_место_отдыха);
+            ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД", тур.ИД_ночёвки);
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ИД", тур.ИД_рейса_из_места_отдыха);
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ИД", тур.ИД_рейса_в_место_отдыха);
             return View(тур);
         }
 
@@ -103,7 +103,7 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Тур/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Удалить")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
