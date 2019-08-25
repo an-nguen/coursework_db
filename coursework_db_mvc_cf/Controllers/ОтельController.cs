@@ -57,7 +57,7 @@ namespace coursework_db_mvc_cf.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
+            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Город", отель.ИД_Адреса);
             return View(отель);
         }
 
@@ -73,7 +73,7 @@ namespace coursework_db_mvc_cf.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
+            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Город", отель.ИД_Адреса);
             return View(отель);
         }
 
@@ -90,7 +90,7 @@ namespace coursework_db_mvc_cf.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Страна", отель.ИД_Адреса);
+            ViewBag.ИД_Адреса = new SelectList(db.Адрес, "ИД", "Город", отель.ИД_Адреса);
             return View(отель);
         }
 

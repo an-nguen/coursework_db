@@ -17,7 +17,12 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Тур
         public ActionResult Index()
         {
-            var тур = db.Тур.Include(т => т.Место_отдыха).Include(т => т.Ночёвка).Include(т => т.Рейс).Include(т => т.Рейс1);
+            var тур = db.Тур.Include(т => т.Место_отдыха)
+                .Include(т => т.Ночёвка)
+                .Include(т => т.Рейс)
+                .Include(т => т.Рейс1)
+                .Include(т => т.Клиент)
+                .ToList();
             return View(тур.ToList());
         }
 
@@ -26,8 +31,9 @@ namespace coursework_db_mvc_cf.Controllers
         {
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название");
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД");
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ИД");
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ИД");
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета");
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета");
+            ViewBag.Клиент = new SelectList(db.Клиент, "ИД", "Клиент");
             return View();
         }
 
@@ -45,8 +51,9 @@ namespace coursework_db_mvc_cf.Controllers
 
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название", тур.ИД_место_отдыха);
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД", тур.ИД_ночёвки);
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ИД", тур.ИД_рейса_из_места_отдыха);
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ИД", тур.ИД_рейса_в_место_отдыха);
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_из_места_отдыха);
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_в_место_отдыха);
+            ViewBag.Клиент = new SelectList(db.Клиент, "ИД", "Почта", тур.Клиент);
             return View(тур);
         }
 
@@ -64,8 +71,8 @@ namespace coursework_db_mvc_cf.Controllers
             }
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название", тур.ИД_место_отдыха);
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "Тип_номера", тур.ИД_ночёвки);
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_из_места_отдыха);
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_в_место_отдыха);
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_из_места_отдыха);
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_в_место_отдыха);
             return View(тур);
         }
 
@@ -82,8 +89,8 @@ namespace coursework_db_mvc_cf.Controllers
             }
             ViewBag.ИД_место_отдыха = new SelectList(db.Место_отдыха, "ИД", "Название", тур.ИД_место_отдыха);
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "Тип_номера", тур.ИД_ночёвки);
-            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_из_места_отдыха);
-            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "ТипТранспорта", тур.ИД_рейса_в_место_отдыха);
+            ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_из_места_отдыха);
+            ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_в_место_отдыха);
             return View(тур);
         }
 

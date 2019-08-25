@@ -3,5 +3,17 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Начальная страница</h2>
+<h2>Панель администратора</h2>
+
+<p class="text-left">
+    Чтобы добавить тур, вам нужно сначала добавить следующие сущности:
+    <ul>
+        <li>@Html.ActionLink("Адрес", "Index", "Адрес", new { area = "" }, new { @class = "" })</li>
+        <li>@Html.ActionLink("Место отдыха", "Index", "Место_отдыха", new { area = "" }, new { @class = "" })</li>
+        <li>@Html.ActionLink("Отель", "Index", "Отель", new { area = "" }, new { @class = "" })</li>
+        <li>@Html.ActionLink("Ночёвка", "Index", "Ночёвка", new { area = "" }, new { @class = "" })</li>
+        <li>@Html.ActionLink("Рейс", "Index", "Рейс", new { area = "" }, new { @class = "" })</li>
+    </ul>
+
+</p>
 

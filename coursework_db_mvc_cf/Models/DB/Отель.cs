@@ -28,7 +28,7 @@ namespace coursework_db_mvc_cf.Models.DB
 
         public int Рейтинг { get; set; }
 
-        public int Индекс { get; set; }
+        public string Индекс { get; set; }
 
         public virtual Адрес Адрес { get; set; }
 

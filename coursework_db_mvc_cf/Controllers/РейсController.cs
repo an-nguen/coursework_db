@@ -45,7 +45,7 @@ namespace coursework_db_mvc_cf.Models.DB
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ИД,ТипТранспорта,СтранаОтправления,СтранаПрибытия,ДатаОтправления,ДатаПрибытия,СтоимостьПоездки")] Рейс рейс)
+        public ActionResult Create([Bind(Include = "ИД,НомерБилета,ТипТранспорта,СтранаОтправления,СтранаПрибытия,ДатаОтправления,ДатаПрибытия,СтоимостьПоездки")] Рейс рейс)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace coursework_db_mvc_cf.Models.DB
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ИД,ТипТранспорта,СтранаОтправления,СтранаПрибытия,ДатаОтправления,ДатаПрибытия,СтоимостьПоездки")] Рейс рейс)
+        public ActionResult Edit([Bind(Include = "ИД,НомерБилета,ТипТранспорта,СтранаОтправления,СтранаПрибытия,ДатаОтправления,ДатаПрибытия,СтоимостьПоездки")] Рейс рейс)
         {
             if (ModelState.IsValid)
             {

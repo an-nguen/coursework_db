@@ -58,6 +58,7 @@ namespace coursework_db_mvc_cf.Models.DB
         public virtual Рейс Рейс1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [DisplayName("Клиенты")]
         public virtual ICollection<Клиент> Клиент { get; set; }
     }
 }

@@ -34,6 +34,8 @@ namespace coursework_db_mvc_cf.Models.DB
         public string Почта { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayName("Дата рождения")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime Дата_рождения { get; set; }
 
         public int Серия { get; set; }
@@ -42,10 +44,12 @@ namespace coursework_db_mvc_cf.Models.DB
 
         [Column(TypeName = "date")]
         [DisplayName("Дата выдачи пасспорта")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime? ДатаВыдачиПасспорта { get; set; }
 
         [Column(TypeName = "date")]
         [DisplayName("Действителен до")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         public DateTime? ДействителенДо { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

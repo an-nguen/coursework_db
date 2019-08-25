@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Приложение ASP.NET</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
@@ -20,14 +20,16 @@
                             CRUD-операции с таблицами
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @Html.ActionLink("Тур", "Index", "Тур", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Отель", "Index", "Отель", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Место отдыха", "Index", "Место_отдыха", new { area = "" }, new { @class = "dropdown-item" })
                             @Html.ActionLink("Адрес", "Index", "Адрес", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Ночёвка", "Index", "Ночёвка", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("Клиент", "Index", "Клиент", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Место отдыха", "Index", "Место_отдыха", new { area = "" }, new { @class = "dropdown-item" })
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            @Html.ActionLink("Отель", "Index", "Отель", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Ночёвка", "Index", "Ночёвка", new { area = "" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Рейс", "Index", "Рейс", new { area = "" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("Тур", "Index", "Тур", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Клиент", "Index", "Клиент", new { area = "" }, new { @class = "dropdown-item" })
                         </div>
                     </li>
                 </ul>
@@ -39,7 +41,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Приложение ASP.NET</p>
         </footer>
     </div>
 

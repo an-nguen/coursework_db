@@ -35,13 +35,21 @@ namespace coursework_db_mvc_cf.Models.DB
         [DisplayName("Страна прибытия")]
         public string СтранаПрибытия { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         [DisplayName("Дата отправления")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ДатаОтправления { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         [DisplayName("Дата прибытия")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime ДатаПрибытия { get; set; }
+
+        [Required]
+        [DisplayName("Номер билета")]
+        public int НомерБилета { get; set; }
 
         [Column(TypeName = "money")]
         [DisplayName("Стоимость поездки")]
