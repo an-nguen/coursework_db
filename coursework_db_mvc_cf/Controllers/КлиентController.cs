@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using coursework_db_mvc_cf.Models.DB;
+using coursework_db_mvc_cf.Models;
 
 namespace coursework_db_mvc_cf.Controllers
 {
@@ -20,25 +21,23 @@ namespace coursework_db_mvc_cf.Controllers
             return View(db.Клиент.ToList());
         }
 
-        // GET: Клиент/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Клиент клиент = db.Клиент.Find(id);
-            if (клиент == null)
-            {
-                return HttpNotFound();
-            }
-            return View(клиент);
-        }
-
         // GET: Клиент/Create
         public ActionResult Create()
         {
-            return View();
+            var client = new Клиент();
+            var result = (from t in db.Тур select t);
+            client.checkBoxList = new List<CheckBoxViewModel>();
+
+            foreach (var tour in result)
+            {
+                client.checkBoxList.Add(new CheckBoxViewModel
+                {
+                    id = tour.ИД,
+                    name = tour.ИД + " - " + tour.Место_отдыха.Название + " - " + tour.Общая_стоимость,
+                    Checked = false
+                });
+            }
+            return View(client);
         }
 
         // POST: Клиент/Create
@@ -46,7 +45,7 @@ namespace coursework_db_mvc_cf.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ИД,Фамилия,Имя,Отчество,Почта,Дата_рождения,Серия,Номер")] Клиент клиент)
+        public ActionResult Create(Клиент клиент)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +65,21 @@ namespace coursework_db_mvc_cf.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Клиент клиент = db.Клиент.Find(id);
+
+            var tours = (from t in db.Тур select t);
+
+            клиент.checkBoxList = new List<CheckBoxViewModel>();
+
+            foreach (var tour in tours)
+            {
+                клиент.checkBoxList.Add(new CheckBoxViewModel
+                {
+                    id = tour.ИД,
+                    name = tour.ИД + " - " + tour.Место_отдыха.Название + " - " + tour.Общая_стоимость,
+                    Checked = tour.isOwnedByClient(клиент)
+                });
+            }
+
             if (клиент == null)
             {
                 return HttpNotFound();
@@ -78,7 +92,7 @@ namespace coursework_db_mvc_cf.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ИД,Фамилия,Имя,Отчество,Почта,Дата_рождения,Серия,Номер")] Клиент клиент)
+        public ActionResult Edit(Клиент клиент)
         {
             if (ModelState.IsValid)
             {

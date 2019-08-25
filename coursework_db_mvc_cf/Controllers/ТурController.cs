@@ -21,7 +21,6 @@ namespace coursework_db_mvc_cf.Controllers
                 .Include(т => т.Ночёвка)
                 .Include(т => т.Рейс)
                 .Include(т => т.Рейс1)
-                .Include(т => т.Клиент)
                 .ToList();
             return View(тур.ToList());
         }
@@ -33,7 +32,6 @@ namespace coursework_db_mvc_cf.Controllers
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД");
             ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета");
             ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета");
-            ViewBag.Клиент = new SelectList(db.Клиент, "ИД", "Клиент");
             return View();
         }
 
@@ -44,6 +42,15 @@ namespace coursework_db_mvc_cf.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (тур.Вкл_поездка == false)
+                {
+                    тур.ИД_рейса_в_место_отдыха = тур.ИД_рейса_из_места_отдыха = null;
+                }
+                if (тур.Вкл_ночёвка == false)
+                {
+                    тур.ИД_ночёвки = null;
+                }
+
                 db.Тур.Add(тур);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -53,7 +60,6 @@ namespace coursework_db_mvc_cf.Controllers
             ViewBag.ИД_ночёвки = new SelectList(db.Ночёвка, "ИД", "ИД", тур.ИД_ночёвки);
             ViewBag.ИД_рейса_из_места_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_из_места_отдыха);
             ViewBag.ИД_рейса_в_место_отдыха = new SelectList(db.Рейс, "ИД", "НомерБилета", тур.ИД_рейса_в_место_отдыха);
-            ViewBag.Клиент = new SelectList(db.Клиент, "ИД", "Почта", тур.Клиент);
             return View(тур);
         }
 
@@ -83,6 +89,14 @@ namespace coursework_db_mvc_cf.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (тур.Вкл_поездка == false) {
+                    тур.ИД_рейса_в_место_отдыха = тур.ИД_рейса_из_места_отдыха = null;
+                }
+                if (тур.Вкл_ночёвка == false)
+                {
+                    тур.ИД_ночёвки = null;
+                }
+
                 db.Entry(тур).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

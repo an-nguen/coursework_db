@@ -60,5 +60,11 @@ namespace coursework_db_mvc_cf.Models.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [DisplayName("Клиенты")]
         public virtual ICollection<Клиент> Клиент { get; set; }
+
+        public bool isOwnedByClient(Клиент клиент)
+        {
+            foreach (var k in this.Клиент) if (клиент == k) return true;
+            return false;
+        }
     }
 }

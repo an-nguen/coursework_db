@@ -176,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckBoxViewModel.cs" />
     <Compile Include="Models\DB\sysdiagrams.cs" />
     <Compile Include="Models\DB\TourAgencyModel.cs" />
     <Compile Include="Models\DB\Адрес.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Models\DB\Рейс.cs" />
     <Compile Include="Controllers\РейсController.cs" />
     <Compile Include="Models\DB\Тур.cs" />
+    <Compile Include="Models\КлиентViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
