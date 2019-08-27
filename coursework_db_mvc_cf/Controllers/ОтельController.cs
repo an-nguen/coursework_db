@@ -21,21 +21,6 @@ namespace coursework_db_mvc_cf.Controllers
             return View(отель.ToList());
         }
 
-        // GET: Отель/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Отель отель = db.Отель.Find(id);
-            if (отель == null)
-            {
-                return HttpNotFound();
-            }
-            return View(отель);
-        }
-
         // GET: Отель/Create
         public ActionResult Create()
         {

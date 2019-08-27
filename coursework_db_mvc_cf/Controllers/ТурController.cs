@@ -14,6 +14,14 @@ namespace coursework_db_mvc_cf.Controllers
     {
         private TourAgencyModel db = new TourAgencyModel();
 
+        public void deleteRelationship(long tourID, long clientID)
+        {
+            var tour = db.Тур.FirstOrDefault(t => t.ИД == tourID);
+            var client = db.Клиент.FirstOrDefault(c => c.ИД == clientID);
+
+            tour.Клиент.Remove(client);
+        }
+
         // GET: Тур
         public ActionResult Index()
         {
@@ -124,11 +132,15 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Тур/Delete/5
-        [HttpPost, ActionName("Удалить")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Тур тур = db.Тур.Find(id);
+            foreach (var client in тур.Клиент)
+            {
+                deleteRelationship(тур.ИД, client.ИД);
+            }
             db.Тур.Remove(тур);
             db.SaveChanges();
             return RedirectToAction("Index");

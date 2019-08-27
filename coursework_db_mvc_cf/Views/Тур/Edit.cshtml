@@ -1,7 +1,7 @@
 ﻿@model coursework_db_mvc_cf.Models.DB.Тур
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование";
 }
 
 <h2>Изменение</h2>
@@ -101,16 +101,6 @@
         <div class="col-md-4">
             @Html.DropDownList("ИД_ночёвки", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.ИД_ночёвки, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group row mt-2">
-        @Html.LabelFor(model => model.Клиент, "Клиенты", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            <select asp-for="Клиент" asp-items="Model.Клиент">
-            </select>
-
-            @Html.ValidationMessageFor(model => model.Клиент, "", new { @class = "text-danger" })
         </div>
     </div>
 

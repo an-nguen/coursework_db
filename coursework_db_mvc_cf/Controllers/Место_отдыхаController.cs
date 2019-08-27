@@ -21,21 +21,6 @@ namespace coursework_db_mvc_cf.Controllers
             return View(место_отдыха.ToList());
         }
 
-        // GET: Место_отдыха/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Место_отдыха место_отдыха = db.Место_отдыха.Find(id);
-            if (место_отдыха == null)
-            {
-                return HttpNotFound();
-            }
-            return View(место_отдыха);
-        }
-
         // GET: Место_отдыха/Create
         public ActionResult Create()
         {
@@ -106,7 +91,7 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Место_отдыха/Delete/5
-        [HttpPost, ActionName("Удалить")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -10,65 +10,68 @@
     @Html.ActionLink("Добавить", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ИД)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.НомерБилета)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ТипТранспорта)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.СтранаОтправления)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.СтранаПрибытия)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ДатаОтправления)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ДатаПрибытия)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.СтоимостьПоездки)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ИД)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.НомерБилета)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ТипТранспорта)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.СтранаОтправления)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.СтранаПрибытия)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ДатаОтправления)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.ДатаПрибытия)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.СтоимостьПоездки)
-    </td>
-    <td>
-        @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }) |
-        @Html.ActionLink("Удалить", "Delete", new { id = item.ИД })
-    </td>
-</tr>
-}
-
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ИД)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.НомерБилета)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ТипТранспорта)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.СтранаОтправления)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.СтранаПрибытия)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ДатаОтправления)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ДатаПрибытия)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.СтоимостьПоездки)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ИД)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.НомерБилета)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ТипТранспорта)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.СтранаОтправления)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.СтранаПрибытия)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ДатаОтправления)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ДатаПрибытия)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.СтоимостьПоездки)
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ИД })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

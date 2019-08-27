@@ -19,21 +19,6 @@ namespace coursework_db_mvc_cf.Models.DB
             return View(db.Рейс.ToList());
         }
 
-        // GET: Рейс/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Рейс рейс = db.Рейс.Find(id);
-            if (рейс == null)
-            {
-                return HttpNotFound();
-            }
-            return View(рейс);
-        }
-
         // GET: Рейс/Create
         public ActionResult Create()
         {

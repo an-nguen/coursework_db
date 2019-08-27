@@ -21,6 +21,7 @@
         public virtual DbSet<Рейс> Рейс { get; set; }
         public virtual DbSet<Тур> Тур { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Адрес>()

@@ -103,16 +103,6 @@
     </div>
 
     <div class="form-group row mt-2">
-        @Html.LabelFor(model => model.Клиент, "Клиенты", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-4">
-            <select asp-for="Клиент" asp-items="Model.Клиент">
-            </select>
-            
-            @Html.ValidationMessageFor(model => model.Клиент, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group row mt-2">
         <div class="col-md-offset-2 col-md-4">
             <input type="submit" value="Добавить" class="btn btn-primary" />
         </div>

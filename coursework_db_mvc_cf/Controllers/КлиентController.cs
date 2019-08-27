@@ -15,6 +15,14 @@ namespace coursework_db_mvc_cf.Controllers
     {
         private TourAgencyModel db = new TourAgencyModel();
 
+        public void deleteRelationship(long tourID, long clientID)
+        {
+            var tour = db.Тур.FirstOrDefault(t => t.ИД == tourID);
+            var client = db.Клиент.FirstOrDefault(c => c.ИД == clientID);
+
+            tour.Клиент.Remove(client);
+        }
+
         // GET: Клиент
         public ActionResult Index()
         {
@@ -24,20 +32,21 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Клиент/Create
         public ActionResult Create()
         {
-            var client = new Клиент();
+            var clientView = new КлиентViewModel();
             var result = (from t in db.Тур select t);
-            client.checkBoxList = new List<CheckBoxViewModel>();
+            clientView.checkBoxList = new List<CheckBoxViewModel>();
 
             foreach (var tour in result)
             {
-                client.checkBoxList.Add(new CheckBoxViewModel
+                clientView.checkBoxList.Add(new CheckBoxViewModel
                 {
                     id = tour.ИД,
                     name = tour.ИД + " - " + tour.Место_отдыха.Название + " - " + tour.Общая_стоимость,
                     Checked = false
                 });
             }
-            return View(client);
+
+            return View(clientView);
         }
 
         // POST: Клиент/Create
@@ -45,16 +54,23 @@ namespace coursework_db_mvc_cf.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Клиент клиент)
+        public ActionResult Create(КлиентViewModel клиентView)
         {
             if (ModelState.IsValid)
             {
-                db.Клиент.Add(клиент);
+                foreach (var checkBox in клиентView.checkBoxList)
+                {
+                    if (checkBox.Checked)
+                    {
+                        клиентView.клиент.Тур.Add(db.Тур.Find(checkBox.id));
+                    }
+                }
+                db.Клиент.Add(клиентView.клиент);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(клиент);
+            return View(клиентView);
         }
 
         // GET: Клиент/Edit/5
@@ -64,15 +80,17 @@ namespace coursework_db_mvc_cf.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            КлиентViewModel клиентView = new КлиентViewModel();
+
             Клиент клиент = db.Клиент.Find(id);
 
             var tours = (from t in db.Тур select t);
 
-            клиент.checkBoxList = new List<CheckBoxViewModel>();
+            var checkBoxList = new List<CheckBoxViewModel>();
 
             foreach (var tour in tours)
             {
-                клиент.checkBoxList.Add(new CheckBoxViewModel
+                checkBoxList.Add(new CheckBoxViewModel
                 {
                     id = tour.ИД,
                     name = tour.ИД + " - " + tour.Место_отдыха.Название + " - " + tour.Общая_стоимость,
@@ -84,7 +102,10 @@ namespace coursework_db_mvc_cf.Controllers
             {
                 return HttpNotFound();
             }
-            return View(клиент);
+            клиентView.клиент = клиент;
+            клиентView.checkBoxList = checkBoxList;
+
+            return View(клиентView);
         }
 
         // POST: Клиент/Edit/5
@@ -92,16 +113,47 @@ namespace coursework_db_mvc_cf.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Клиент клиент)
+        public ActionResult Edit(КлиентViewModel клиентView)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(клиент).State = EntityState.Modified;
+                var tours = (from t in db.Тур select t);
+
+                var modifiedData = клиентView.клиент;
+                var client = db.Клиент.Find(клиентView.клиент.ИД);
+
+                db.Entry(client).Collection(p => p.Тур).Load();
+
+                client.Фамилия = modifiedData.Фамилия;
+                client.Имя = modifiedData.Имя;
+                client.Отчество = modifiedData.Отчество;
+                client.Дата_рождения = modifiedData.Дата_рождения;
+                client.Почта = modifiedData.Почта;
+                client.Серия = modifiedData.Серия;
+                client.Номер = modifiedData.Номер;
+                client.ДействителенДо = modifiedData.ДействителенДо;
+                client.ДатаВыдачиПасспорта = modifiedData.ДатаВыдачиПасспорта;
+
+                foreach (var tour in client.Тур)
+                {
+                    deleteRelationship(tour.ИД, client.ИД);
+                }
+
+                foreach (var selTour in клиентView.checkBoxList)
+                {
+                    if (selTour.Checked)
+                    {
+                        client.Тур.Add(db.Тур.Find(selTour.id));
+                    }
+                }
+                
+
+                db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(клиент);
+            return View(клиентView);
         }
 
         // GET: Клиент/Delete/5
@@ -120,12 +172,20 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Клиент/Delete/5
-        [HttpPost, ActionName("Удалить")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Клиент клиент = db.Клиент.Find(id);
+            db.Entry(клиент).Collection(p => p.Тур).Load();
+
+            foreach (var tour in клиент.Тур)
+            {
+                deleteRelationship(tour.ИД, клиент.ИД);
+            }
+
             db.Клиент.Remove(клиент);
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -10,29 +10,32 @@
     @Html.ActionLink("Добавить", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Адрес.Страна)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Название)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Адрес.Страна)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Название)
-        </td>
-        <td>
-            @Html.ActionLink("Изменить", "Edit", new { id=item.ИД }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.ИД })
-        </td>
-    </tr>
-}
-
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Адрес.Страна)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Название)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Адрес.Страна)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Название)
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ИД })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

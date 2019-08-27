@@ -21,21 +21,6 @@ namespace coursework_db_mvc_cf.Controllers
             return View(ночёвка.ToList());
         }
 
-        // GET: Ночёвка/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Ночёвка ночёвка = db.Ночёвка.Find(id);
-            if (ночёвка == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ночёвка);
-        }
-
         // GET: Ночёвка/Create
         public ActionResult Create()
         {
@@ -110,7 +95,7 @@ namespace coursework_db_mvc_cf.Controllers
         }
 
         // POST: Ночёвка/Delete/5
-        [HttpPost, ActionName("Удалить")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

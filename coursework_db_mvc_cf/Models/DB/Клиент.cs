@@ -54,8 +54,5 @@ namespace coursework_db_mvc_cf.Models.DB
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Тур> Тур { get; set; }
-
-        [DisplayName("Список туров")]
-        public List<CheckBoxViewModel> checkBoxList { get; set; }
     }
 }
