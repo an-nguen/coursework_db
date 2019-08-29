@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using coursework_db_mvc_cf.Models.DB;
 using coursework_db_mvc_cf.Models;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 
 namespace coursework_db_mvc_cf.Controllers
 {
@@ -26,9 +28,31 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Клиент
         public ActionResult Index()
         {
-            return View(db.Клиент.ToList());
+            var clients = new List<КлиентViewModel>();
+            foreach (var c in db.Клиент) {
+                var clientView = new КлиентViewModel();
+                clientView.клиент = c;
+                db.Entry(c).Collection(p => p.Тур).Load();
+                clientView.checkBoxList = new List<CheckBoxViewModel>();
+
+                foreach (var tour in c.Тур)
+                {
+                    clientView.checkBoxList.Add(new CheckBoxViewModel
+                    {
+                        id = tour.ИД,
+                        name = tour.ИД + " - " + tour.Место_отдыха.Название,
+                        Checked = false
+                    });
+                }
+
+                clients.Add(clientView);
+            }
+
+            
+            return View(clients);
         }
 
+     
         // GET: Клиент/Create
         public ActionResult Create()
         {

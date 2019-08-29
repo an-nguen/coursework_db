@@ -18,6 +18,7 @@ namespace coursework_db_mvc_cf.Models.DB
         [Key]
         public int ИД { get; set; }
 
+        [Required]
         [DisplayName("Адрес")]
         public int ИД_Адреса { get; set; }
 
@@ -25,9 +26,9 @@ namespace coursework_db_mvc_cf.Models.DB
         [StringLength(128)]
         [DisplayName("Название отели")]
         public string Название_отели { get; set; }
-
+        [Required]
         public int Рейтинг { get; set; }
-
+        [Required]
         public string Индекс { get; set; }
 
         public virtual Адрес Адрес { get; set; }

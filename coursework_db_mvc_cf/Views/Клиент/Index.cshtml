@@ -1,4 +1,4 @@
-﻿@model IEnumerable<coursework_db_mvc_cf.Models.DB.Клиент>
+﻿@model IEnumerable<coursework_db_mvc_cf.Models.КлиентViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,25 +7,28 @@
 <h2>Список клиентов</h2>
 
 <p>
-    @Html.ActionLink("Добавить", "Create")
+    @Html.ActionLink("Добавить", "Create") | @Html.ActionLink("Показать клиентов с неверными данными", "NotValidClients")
 </p>
 <table class="table">
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Фамилия)
+                @Html.DisplayNameFor(model => model.клиент.Фамилия)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Имя)
+                @Html.DisplayNameFor(model => model.клиент.Имя)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Отчество)
+                @Html.DisplayNameFor(model => model.клиент.Отчество)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Почта)
+                @Html.DisplayNameFor(model => model.клиент.Почта)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Дата_рождения)
+                @Html.DisplayNameFor(model => model.клиент.Дата_рождения)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.клиент.Тур)
             </th>
             <th></th>
         </tr>
@@ -33,27 +36,37 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Фамилия)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Имя)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Отчество)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Почта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Дата_рождения)
-                </td>
-                <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = item.ИД }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = item.ИД })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.клиент.Фамилия)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.клиент.Имя)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.клиент.Отчество)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.клиент.Почта)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.клиент.Дата_рождения)
+            </td>
+            <td>
+                @for (int i = 0; i < item.checkBoxList.Count(); i++)
+                {
+                    <div class="form-check">
+                        @Html.HiddenFor(m => item.checkBoxList[i].id)
+                        @Html.HiddenFor(m => item.checkBoxList[i].Checked)
+                        @Html.DisplayFor(m => item.checkBoxList[i].name, new { htmlAttributes = new { @class = "form-check-label" } })
+                    </div>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = item.клиент.ИД }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.клиент.ИД })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

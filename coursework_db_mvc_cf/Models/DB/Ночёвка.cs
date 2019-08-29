@@ -28,9 +28,11 @@ namespace coursework_db_mvc_cf.Models.DB
         public string Тип_номера { get; set; }
 
         [DisplayName("Кол-во ночей")]
+        [Required]
         public int Количество_ночей { get; set; }
 
         [DisplayName("Отель")]
+        [Required]
         public int ИД_отели { get; set; }
 
         public virtual Отель Отель { get; set; }

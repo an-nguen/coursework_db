@@ -1,0 +1,82 @@
+﻿@model coursework_db_mvc_cf.Models.ТурFindModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Список путёвок</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3>Поиск</h3>
+    <div class="form-row mb-2">
+            <div class="col-auto">
+                @Html.EditorFor(model => model.findByCity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Город" } })
+            </div>
+            <div class="col-auto">
+                @Html.EditorFor(model => model.findByCountry, new { htmlAttributes = new { @class = "form-control", @placeholder = "Страна" } })
+            </div>
+        </div>
+    <div class="form-row">
+            @Html.LabelFor(model => model.findByMinCost, "Стоимость путёвок от", htmlAttributes: new { @class = "col-form-label" })
+            <div class="col-auto">
+                @Html.EditorFor(model => model.findByMinCost, new { htmlAttributes = new { @class = "form-control", @placeholder = "от" } })
+            </div>
+            @Html.LabelFor(model => model.findByMinCost, "до", htmlAttributes: new { @class = "col-form-label" })
+            <div class="col-auto">
+                @Html.EditorFor(model => model.findByMaxCost, new { htmlAttributes = new { @class = "form-control", @placeholder = "до" } })
+            </div>
+            </div>
+                <div class="col-auto">
+                    <input type="submit" value="Поиск" class="btn btn-secondary" />
+                </div>
+
+            @Html.ValidationMessageFor(model => model.findByMinCost, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.findByMaxCost, "", new { @class = "text-danger" })
+}
+
+<br />
+@for (var i = 0; i < Model.tours.Count(); i++)
+{
+    <div class="card">
+        <div class="card-header">
+            @Html.DisplayFor(modelItem => modelItem.tours[i].Место_отдыха.Название) - @Html.DisplayFor(modelItem => modelItem.tours[i].Место_отдыха.Адрес.Страна)
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Тур # @Html.DisplayFor(modelItem => modelItem.tours[i].ИД)</h5>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Вкл_гида) - @Html.DisplayFor(modelItem => modelItem.tours[i].Вкл_гида)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Вкл_ночёвка) - @Html.DisplayFor(modelItem => modelItem.tours[i].Вкл_ночёвка)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Вкл_питание) - @Html.DisplayFor(modelItem => modelItem.tours[i].Вкл_питание)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Вкл_поездка) - @Html.DisplayFor(modelItem => modelItem.tours[i].Вкл_поездка)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Длительность_отдыха_в_днях) - @Html.DisplayFor(modelItem => modelItem.tours[i].Длительность_отдыха_в_днях)</p>
+            <p class="card-text">@Html.DisplayNameFor(model => model.tours[i].Общая_стоимость) - @Html.DisplayFor(modelItem => modelItem.tours[i].Общая_стоимость)</p>
+        </div>
+    </div>
+    @*<tr>
+            <td>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ночёвка.Тип_номера)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вкл_гида)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вкл_питание)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вкл_ночёвка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Вкл_поездка)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Общая_стоимость)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Длительность_отдыха_в_днях)
+            </td>
+        </tr>*@
+}

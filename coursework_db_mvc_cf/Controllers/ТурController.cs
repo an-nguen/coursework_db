@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework_db_mvc_cf.Models;
 using coursework_db_mvc_cf.Models.DB;
 
 namespace coursework_db_mvc_cf.Controllers
@@ -22,6 +23,11 @@ namespace coursework_db_mvc_cf.Controllers
             tour.Клиент.Remove(client);
         }
 
+        public List<Тур> selectExpiredTour()
+        {
+            return db.Тур.SqlQuery("[dbo].[SelectExpiredTours]").ToList();
+        }
+
         // GET: Тур
         public ActionResult Index()
         {
@@ -31,6 +37,60 @@ namespace coursework_db_mvc_cf.Controllers
                 .Include(т => т.Рейс1)
                 .ToList();
             return View(тур.ToList());
+        }
+
+        // GET: Тур
+        public ActionResult ExpiredTours()
+        {
+
+            var тур = selectExpiredTour();
+            return View(тур.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Details()
+        {
+            var тур = db.Тур.Include(т => т.Место_отдыха)
+                .Include(т => т.Ночёвка)
+                .Include(т => т.Рейс)
+                .Include(т => т.Рейс1)
+                .ToList();
+
+            var турView = new ТурFindModel();
+            турView.tours = тур;
+            турView.findByMinCost = 0;
+            турView.findByMaxCost = 1000000;
+
+            return View(турView);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(ТурFindModel турModel)
+        {
+            var тур = db.Тур.Include(т => т.Место_отдыха)
+                .Include(т => т.Ночёвка)
+                .Include(т => т.Рейс)
+                .Include(т => т.Рейс1)
+                .ToList();
+            if (!String.IsNullOrEmpty(турModel.findByCity))
+            {
+                тур = тур.Where(s => s.Место_отдыха.Адрес.Город.Contains(турModel.findByCity)).ToList();
+            }
+            if (!String.IsNullOrEmpty(турModel.findByCountry))
+            {
+                тур = тур.Where(s => s.Место_отдыха.Адрес.Страна.Contains(турModel.findByCountry)).ToList();
+            }
+            тур = тур.Where(s => s.Общая_стоимость > турModel.findByMinCost 
+                            && s.Общая_стоимость < турModel.findByMaxCost)
+                        .ToList();
+            турModel.tours = тур;
+
+            турModel.findByCity = турModel.findByCountry = "";
+            турModel.findByMinCost = 0;
+            турModel.findByMaxCost = 1000000;
+
+            return View(турModel);
         }
 
         // GET: Тур/Create
@@ -137,10 +197,13 @@ namespace coursework_db_mvc_cf.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Тур тур = db.Тур.Find(id);
-            foreach (var client in тур.Клиент)
+            db.Entry(тур).Collection(p => p.Клиент).Load();
+
+            foreach (var client in тур.Клиент.ToList())
             {
                 deleteRelationship(тур.ИД, client.ИД);
             }
+
             db.Тур.Remove(тур);
             db.SaveChanges();
             return RedirectToAction("Index");
