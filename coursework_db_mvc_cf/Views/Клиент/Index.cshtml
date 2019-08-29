@@ -1,4 +1,4 @@
-﻿@model IEnumerable<coursework_db_mvc_cf.Models.КлиентViewModel>
+﻿@model coursework_db_mvc_cf.Models.КлиентFindModel
 
 @{
     ViewBag.Title = "Index";
@@ -9,64 +9,88 @@
 <p>
     @Html.ActionLink("Добавить", "Create") | @Html.ActionLink("Показать клиентов с неверными данными", "NotValidClients")
 </p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <h3>Поиск</h3>
+    <div class="form-row mb-2">
+        <div class="col-auto">
+            @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Фамилия" } })
+        </div>
+        <div class="col-auto">
+            @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Имя" } })
+        </div>
+        <div class="col-auto">
+            @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "form-control", @placeholder = "Серия" } })
+        </div>
+        <div class="col-auto">
+            @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control", @placeholder = "Номер" } })
+        </div>
+    </div>
+    <div class="col-auto mb-2">
+        <input type="submit" value="Поиск" class="btn btn-secondary" />
+    </div>
+}
+
 <table class="table">
     <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Фамилия)
+                Фамилия
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Имя)
+                Имя
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Отчество)
+                Отчество
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Почта)
+                Почта
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Дата_рождения)
+                Дата рождения
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.клиент.Тур)
+                Туры
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @for (var i = 0; i < Model.clients.Count(); i++)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.клиент.Фамилия)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.клиент.Имя)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.клиент.Отчество)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.клиент.Почта)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.клиент.Дата_рождения)
-            </td>
-            <td>
-                @for (int i = 0; i < item.checkBoxList.Count(); i++)
-                {
-                    <div class="form-check">
-                        @Html.HiddenFor(m => item.checkBoxList[i].id)
-                        @Html.HiddenFor(m => item.checkBoxList[i].Checked)
-                        @Html.DisplayFor(m => item.checkBoxList[i].name, new { htmlAttributes = new { @class = "form-check-label" } })
-                    </div>
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Изменить", "Edit", new { id = item.клиент.ИД }) |
-                @Html.ActionLink("Удалить", "Delete", new { id = item.клиент.ИД })
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Фамилия)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Имя)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Отчество)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Почта)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Дата_рождения)
+                </td>
+                <td>
+                    @for (int j = 0; j < Model.clients[i].checkBoxList.Count(); j++)
+                    {
+                        <div class="form-check">
+                            @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].id)
+                            @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].Checked)
+                            @Html.DisplayFor(m => Model.clients[i].checkBoxList[j].name, new { htmlAttributes = new { @class = "form-check-label" } })
+                        </div>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "Edit", new { id = Model.clients[i].клиент.ИД }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = Model.clients[i].клиент.ИД })
+                </td>
+            </tr>
         }
     </tbody>
 </table>

@@ -28,8 +28,12 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Клиент
         public ActionResult Index()
         {
-            var clients = new List<КлиентViewModel>();
-            foreach (var c in db.Клиент) {
+            var клиентFindModel = new КлиентFindModel();
+            клиентFindModel.clients = new List<КлиентViewModel>();
+            var clients = db.Клиент.ToList();
+            
+            foreach (var c in clients)
+            {
                 var clientView = new КлиентViewModel();
                 clientView.клиент = c;
                 db.Entry(c).Collection(p => p.Тур).Load();
@@ -45,12 +49,58 @@ namespace coursework_db_mvc_cf.Controllers
                     });
                 }
 
-                clients.Add(clientView);
+                клиентFindModel.clients.Add(clientView);
             }
+            клиентFindModel.Serie = клиентFindModel.Number = "";
 
-            
-            return View(clients);
+            return View(клиентFindModel);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(КлиентFindModel клиентFindModel)
+        {
+            клиентFindModel.clients = new List<КлиентViewModel>();
+            var clients = db.Клиент.ToList();
+            if (!String.IsNullOrEmpty(клиентFindModel.Serie))
+            {
+                clients = clients.Where(s => s.Серия.ToString().Contains(клиентFindModel.Serie)).ToList();
+            }
+            if (!String.IsNullOrEmpty(клиентFindModel.Number))
+            {
+                clients = clients.Where(s => s.Номер.ToString().Contains(клиентFindModel.Number)).ToList();
+            }
+            if (!String.IsNullOrEmpty(клиентFindModel.lastName))
+            {
+                clients = clients.Where(s => s.Фамилия.Contains(клиентFindModel.lastName)).ToList();
+            }
+            if (!String.IsNullOrEmpty(клиентFindModel.firstName))
+            {
+                clients = clients.Where(s => s.Имя.Contains(клиентFindModel.firstName)).ToList();
+            }
+            foreach (var c in clients)
+            {
+                var clientView = new КлиентViewModel();
+                clientView.клиент = c;
+                db.Entry(c).Collection(p => p.Тур).Load();
+                clientView.checkBoxList = new List<CheckBoxViewModel>();
+
+                foreach (var tour in c.Тур)
+                {
+                    clientView.checkBoxList.Add(new CheckBoxViewModel
+                    {
+                        id = tour.ИД,
+                        name = tour.ИД + " - " + tour.Место_отдыха.Название,
+                        Checked = false
+                    });
+                }
+
+                клиентFindModel.clients.Add(clientView);
+            }
+            клиентFindModel.Serie = клиентFindModel.Number = "";
+
+            return View(клиентFindModel);
+        } 
 
      
         // GET: Клиент/Create

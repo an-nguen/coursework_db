@@ -188,6 +188,7 @@
     <Compile Include="Controllers\РейсController.cs" />
     <Compile Include="Models\DB\Тур.cs" />
     <Compile Include="Models\КлиентViewModel.cs" />
+    <Compile Include="Models\КлиентFindModel.cs" />
     <Compile Include="Models\ТурFindModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
