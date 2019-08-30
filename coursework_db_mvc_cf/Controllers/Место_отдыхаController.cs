@@ -24,7 +24,8 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Место_отдыха/Create
         public ActionResult Create()
         {
-            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Страна");
+            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Город"); 
+
             return View();
         }
 
@@ -40,7 +41,7 @@ namespace coursework_db_mvc_cf.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Страна", место_отдыха.ИД_адреса);
+            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Город", место_отдыха.ИД_адреса);
             return View(место_отдыха);
         }
 
@@ -56,7 +57,7 @@ namespace coursework_db_mvc_cf.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Страна", место_отдыха.ИД_адреса);
+            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Город", место_отдыха.ИД_адреса);
             return View(место_отдыха);
         }
 
@@ -71,7 +72,7 @@ namespace coursework_db_mvc_cf.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Страна", место_отдыха.ИД_адреса);
+            ViewBag.ИД_адреса = new SelectList(db.Адрес, "ИД", "Город", место_отдыха.ИД_адреса);
             return View(место_отдыха);
         }
 

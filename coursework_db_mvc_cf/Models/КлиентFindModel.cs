@@ -19,5 +19,7 @@ namespace coursework_db_mvc_cf.Models
         public string lastName { get; set; }
         [DisplayName("Имя")]
         public string firstName { get; set; }
+        [DisplayName("Почта")]
+        public string Email { get; set; }
     }
 }

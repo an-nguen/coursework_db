@@ -7,7 +7,7 @@
 <h2>Список клиентов</h2>
 
 <p>
-    @Html.ActionLink("Добавить", "Create") | @Html.ActionLink("Показать клиентов с неверными данными", "NotValidClients")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 
 @using (Html.BeginForm())
@@ -20,6 +20,9 @@
         </div>
         <div class="col-auto">
             @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Имя" } })
+        </div>
+        <div class="col-auto">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Почта" } })
         </div>
         <div class="col-auto">
             @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "form-control", @placeholder = "Серия" } })
@@ -52,6 +55,12 @@
                 Дата рождения
             </th>
             <th>
+                Серия
+            </th>
+            <th>
+                Номер
+            </th>
+            <th>
                 Туры
             </th>
             <th></th>
@@ -60,37 +69,43 @@
     <tbody>
         @for (var i = 0; i < Model.clients.Count(); i++)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Фамилия)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Имя)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Отчество)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Почта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Дата_рождения)
-                </td>
-                <td>
-                    @for (int j = 0; j < Model.clients[i].checkBoxList.Count(); j++)
-                    {
-                        <div class="form-check">
-                            @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].id)
-                            @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].Checked)
-                            @Html.DisplayFor(m => Model.clients[i].checkBoxList[j].name, new { htmlAttributes = new { @class = "form-check-label" } })
-                        </div>
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Изменить", "Edit", new { id = Model.clients[i].клиент.ИД }) |
-                    @Html.ActionLink("Удалить", "Delete", new { id = Model.clients[i].клиент.ИД })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Фамилия)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Имя)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Отчество)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Почта)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Дата_рождения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Серия)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => modelItem.clients[i].клиент.Номер)
+            </td>
+            <td>
+                @for (int j = 0; j < Model.clients[i].checkBoxList.Count(); j++)
+                {
+                    <div class="form-check">
+                        @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].id)
+                        @Html.HiddenFor(m => Model.clients[i].checkBoxList[j].Checked)
+                        @Html.DisplayFor(m => Model.clients[i].checkBoxList[j].name, new { htmlAttributes = new { @class = "form-check-label" } })
+                    </div>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Изменить", "Edit", new { id = Model.clients[i].клиент.ИД }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = Model.clients[i].клиент.ИД })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -1,7 +1,7 @@
 ﻿@model coursework_db_mvc_cf.Models.DB.Место_отдыха
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Создание";
 }
 
 <h2>Добавление</h2>
@@ -11,11 +11,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Место_отдыха</h4>
+        <h4>Место отдыха</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group row mt-2">
-            @Html.LabelFor(model => model.ИД_адреса, "ИД_адреса", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ИД_адреса, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ИД_адреса", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ИД_адреса, "", new { @class = "text-danger" })

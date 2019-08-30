@@ -187,6 +187,7 @@
     <Compile Include="Models\DB\Рейс.cs" />
     <Compile Include="Controllers\РейсController.cs" />
     <Compile Include="Models\DB\Тур.cs" />
+    <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Models\КлиентViewModel.cs" />
     <Compile Include="Models\КлиентFindModel.cs" />
     <Compile Include="Models\ТурFindModel.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Views\Рейс\Index.cshtml" />
     <Content Include="Views\Тур\ExpiredTours.cshtml" />
     <Content Include="Views\Тур\Details.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

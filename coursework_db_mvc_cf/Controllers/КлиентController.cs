@@ -78,6 +78,10 @@ namespace coursework_db_mvc_cf.Controllers
             {
                 clients = clients.Where(s => s.Имя.Contains(клиентFindModel.firstName)).ToList();
             }
+            if (!String.IsNullOrEmpty(клиентFindModel.Email))
+            {
+                clients = clients.Where(s => s.Почта.Contains(клиентFindModel.Email)).ToList();
+            }
             foreach (var c in clients)
             {
                 var clientView = new КлиентViewModel();
@@ -130,6 +134,13 @@ namespace coursework_db_mvc_cf.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(КлиентViewModel клиентView)
         {
+            if ((клиентView.клиент.Серия <= 0 & клиентView.клиент.Номер <= 0) | !(клиентView.клиент.Серия <= 0 | !(клиентView.клиент.Номер <= 0)))
+            {
+                var errorModel = new ErrorViewModel();
+                errorModel.ErrorMessage = "Серия и номер пасспорта не должны быть равны";
+                return RedirectToAction("Error", errorModel);
+            }
+
             if (ModelState.IsValid)
             {
                 foreach (var checkBox in клиентView.checkBoxList)
@@ -143,8 +154,25 @@ namespace coursework_db_mvc_cf.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            var result = (from t in db.Тур select t);
+            клиентView.checkBoxList = new List<CheckBoxViewModel>();
+
+            foreach (var tour in result)
+            {
+                клиентView.checkBoxList.Add(new CheckBoxViewModel
+                {
+                    id = tour.ИД,
+                    name = tour.ИД + " - " + tour.Место_отдыха.Название + " - " + tour.Общая_стоимость,
+                    Checked = false
+                });
+            }
 
             return View(клиентView);
+        }
+
+        public ActionResult Error(ErrorViewModel model)
+        {
+            return View(model);
         }
 
         // GET: Клиент/Edit/5
@@ -189,6 +217,14 @@ namespace coursework_db_mvc_cf.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(КлиентViewModel клиентView)
         {
+            
+            if ((клиентView.клиент.Серия <= 0 & клиентView.клиент.Номер <= 0) | !(клиентView.клиент.Серия <= 0 | !(клиентView.клиент.Номер <= 0)))
+            {
+                var errorModel = new ErrorViewModel();
+                errorModel.ErrorMessage = "Серия и номер пасспорта не должны быть равны 0!";
+                return RedirectToAction("Error", errorModel);
+            }
+
             if (ModelState.IsValid)
             {
                 var tours = (from t in db.Тур select t);
