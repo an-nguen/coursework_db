@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework_db_mvc_cf.Models;
 using coursework_db_mvc_cf.Models.DB;
 
 namespace coursework_db_mvc_cf.Controllers
@@ -17,7 +18,29 @@ namespace coursework_db_mvc_cf.Controllers
         // GET: Адрес
         public ActionResult Index()
         {
-            return View(db.Адрес.ToList());
+            АдресFindModel адресFindModel = new АдресFindModel();
+            адресFindModel.адресы = db.Адрес.ToList();
+            return View(адресFindModel);
+        }
+
+        [HttpPost]
+        public ActionResult Index(АдресFindModel адресFindModel)
+        {
+            var адреса = db.Адрес.ToList();
+            if (!String.IsNullOrEmpty(адресFindModel.City))
+            {
+                адреса = адреса.Where(s => s.Город.Contains(адресFindModel.City)).ToList();
+            }
+            if (!String.IsNullOrEmpty(адресFindModel.Country))
+            {
+                адреса = адреса.Where(s => s.Страна.Contains(адресFindModel.Country)).ToList();
+            }
+
+            адресFindModel.адресы = адреса;
+            адресFindModel.City = "";
+            адресFindModel.Country = "";
+
+            return View(адресFindModel);
         }
 
         // GET: Адрес/Create

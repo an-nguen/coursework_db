@@ -13,7 +13,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <h3>Поиск</h3>
+    <h3>Поиск и фильтрация</h3>
     <div class="form-row mb-2">
         <div class="col-auto">
             @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Фамилия" } })
